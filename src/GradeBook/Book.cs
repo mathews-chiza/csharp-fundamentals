@@ -1,18 +1,10 @@
 namespace GradeBook
 {
-    public class Book
+    public class Book(string name) : NamedObject(name)
     {
-        private List<double> grades;
-
-        public string Name;
+        private readonly List<double> grades = [];
 
         public event GradeAddedDelegate? GradeAdded;
-
-        public Book(string name)
-        {
-            grades = [];
-            Name = name;
-        }
 
         public void AddGrade(char letter)
         {
