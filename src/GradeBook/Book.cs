@@ -6,9 +6,11 @@ namespace GradeBook
 
         public string Name;
 
+        public event GradeAddedDelegate? GradeAdded;
+
         public Book(string name)
         {
-            grades = new();
+            grades = [];
             Name = name;
         }
 
@@ -39,6 +41,11 @@ namespace GradeBook
             if (grade <= 100 && grade >= 0)
             {
                 grades.Add(grade);
+
+                if (GradeAdded is not null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {

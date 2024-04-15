@@ -5,6 +5,8 @@
         static void Main(string[] args)
         {
             var book = new Book("Mathews's Grade Book");
+            book.GradeAdded += OnGradeAdded;
+
             var done = false;
             while (!done)
             {
@@ -18,6 +20,13 @@
                 }
             }
             book.ShowStatistics();
+        }
+
+        private static void OnGradeAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine("..........................");
+            Console.WriteLine("....A grade was added.....");
+            Console.WriteLine("..........................");
         }
 
         private static void InsertValue(Book book, string input)
