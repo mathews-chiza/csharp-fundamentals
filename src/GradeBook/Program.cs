@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var book = new Book("Mathews's Grade Book");
+            var book = new DiskBook("Mathews's Grade Book");
             book.GradeAdded += OnGradeAdded;
 
             var done = false;
@@ -29,7 +29,7 @@
             Console.WriteLine("..........................");
         }
 
-        private static void InsertValue(Book book, string input)
+        private static void InsertValue(IBook book, string input)
         {
             try
             {
