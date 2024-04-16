@@ -6,8 +6,6 @@ namespace GradeBook
 
         Statistics GetStatistics();
 
-        void ShowStatistics();
-
         void AddGrade(double grade);
     }
 }

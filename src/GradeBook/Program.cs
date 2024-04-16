@@ -13,13 +13,27 @@
                 Console.WriteLine("Enter a grade to add to grade book.\nEnter q to show statistics and exit:");
                 var input = Console.ReadLine();
 
-                if (input == "q" || string.IsNullOrEmpty(input)) {
+                if (input == "q" || string.IsNullOrEmpty(input))
+                {
                     done = true;
-                } else {
+                }
+                else
+                {
                     InsertValue(book, input);
                 }
             }
-            book.ShowStatistics();
+            ShowStatistics(book);
+        }
+
+        private static void ShowStatistics(Book book)
+        {
+            var stats = book.GetStatistics();
+            Console.WriteLine($"::::::{book.Name}::::::\n");
+            Console.WriteLine($"The average grade is {stats.Average:N1}");
+            Console.WriteLine($"The highest grade is {stats.High}");
+            Console.WriteLine($"The lowest grade is {stats.Low}");
+            Console.WriteLine($"The letter grade is {stats.Letter}");
+            Console.WriteLine($"\n::::::{book.Name}::::::");
         }
 
         private static void OnGradeAdded(object sender, EventArgs e)

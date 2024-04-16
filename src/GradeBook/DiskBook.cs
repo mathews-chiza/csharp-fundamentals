@@ -2,11 +2,13 @@ namespace GradeBook
 {
     public class DiskBook(string name) : Book(name)
     {
+        private readonly string fileName = $"{name}.txt";
+
         public override event GradeAddedDelegate? GradeAdded;
 
         public override void AddGrade(double grade)
         {
-            using var writer = File.AppendText($"{name}.txt");
+            using var writer = File.AppendText(fileName);
             writer.WriteLine(grade);
 
             if (GradeAdded is not null)
@@ -17,12 +19,19 @@ namespace GradeBook
 
         public override Statistics GetStatistics()
         {
-            throw new NotImplementedException();
-        }
+            var result = new Statistics();
 
-        public override void ShowStatistics()
-        {
-            throw new NotImplementedException();
+            using (var reader = File.OpenText(fileName))
+            {
+                var line = reader.ReadLine();
+                while (line is not null)
+                {
+                    result.Add(double.Parse(line));
+                    line = reader.ReadLine();
+                }
+            }
+
+            return result;
         }
     }
 }

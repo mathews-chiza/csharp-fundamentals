@@ -7,7 +7,5 @@ namespace GradeBook
         public abstract void AddGrade(double grade);
 
         public abstract Statistics GetStatistics();
-
-        public abstract void ShowStatistics();
     }
 }
